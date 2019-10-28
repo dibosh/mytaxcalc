@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MY Tax Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="resources/styles.css">
+</head>
+
+<body ng-app="myTaxCalcApp" class="background-grd-1">
+  <div class="d-flex flex-row justify-content-center p-4" ng-controller="MainCtrl as vm">
+    <div class="jumbotron w-50 mt-4">
+      <p class="lead">
+        This is a simple income tax calculator for people staying in Malaysia. Just fill in the information
+        below and press calculate.
+      </p>
+      <hr class="my-4">
+      <form>
+        <div class="form-group">
+          <label for="monthly-sal">Your Monthly Salary</label>
+          <input type="number" class="form-control" id="monthly-sal" ng-model="vm.state.monthlySal" />
+        </div>
+
+        <div class="form-group">
+          <label for="bonus">Bonus</label>
+          <input type="number" class="form-control" id="bonus" ng-model="vm.state.bonus" />
+          <small id="bonus-help" class="form-text text-muted">
+            The total amount you are expecting to get this year as festival bonus, performance bonus etc. Don't put
+            anything if you are not eligible for any amounts like that
+          </small>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" ng-model="vm.state.isMarried" id="is-married-check" />
+          <label class="form-check-label" for="is-married-check">
+            I am married and my spouse does not work
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" ng-model="vm.state.isPayingForParents"
+            id="is-paying-parents-check" />
+          <label class="form-check-label" for="is-paying-parents-check">
+            I bear expenses for my parents
+          </label>
+        </div>
+
+        <button class="mt-4 btn btn-small btn-primary" ng-click="vm.calculate()">Calculate my Tax</button>
+      </form>
+
+      <h1 class="display-4 mt-3" ng-if="vm.state.taxPerMonth > 0">{{vm.state.taxPerMonth}}/mo</h1>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+  <script src="resources/tax.calculator.js"></script>
+  <script src="resources/index.js"></script>
+</body>
+
+</html>
